@@ -80,7 +80,7 @@ namespace Greedy.Dapper
                 //var isAnonymous = false;
                 //if (!isAnonymous)
                 //{
-                method = typeof(SqlMapper).GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static).FirstOrDefault(x => x.Name == "Query" && x.IsGenericMethodDefinition).MakeGenericMethod(type.IsGenericType ? type.GetGenericArguments() : new[] { type });
+                method = typeof(SqlMapper).GetMethods(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(x => x.Name == "Query" && x.IsGenericMethodDefinition && x.GetGenericArguments().Count() == 1 && x.GetParameters().Count() == 7).MakeGenericMethod(type.IsGenericType ? type.GetGenericArguments() : new[] { type });
                 //}
                 //else
                 //{

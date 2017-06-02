@@ -179,6 +179,13 @@ namespace Greedy.Dapper
                     }
                 }
             }
+            else if (parameter is IEnumerable<T>)
+            {
+                foreach (var item in parameter as IEnumerable<T>)
+                {
+                    InitialKeyOfParameter<T>(item);
+                }
+            }
             else
             {
                 var instanceType = parameter.GetType();
